@@ -31,5 +31,6 @@ chalice deploy
 # Configuration & Limitation
 
 - Due to Twitter's [rate limit](https://developer.twitter.com/ja/docs/twitter-api/rate-limits), it removes upto `50 tweets/15min` == `200 tweets/1hour`. Just hold on tight..
+  - for batch deletion, consider downloading tweet archive & delete with v1.1 `DestroyStatus` API
 - By default, tweets posted before 6 month from the moment of execution will be the target of clean up.
  - you can tweak by editing `app.py#REMOVE_BEFORE` if you'd like.
