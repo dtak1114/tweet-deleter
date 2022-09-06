@@ -31,6 +31,7 @@ def delete_tweets_before(myid, dt, next_token=None):
     count = 0
     if res.data is not None:
         for t in res.data:
+            client.delete_tweet(t['id'])
             print(t)
             count += 1
     return count
