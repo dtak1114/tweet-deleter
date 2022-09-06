@@ -4,8 +4,8 @@ import os
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-# by default, tweets before 6 months from now are removed.
-REMOVE_BEFORE = datetime.now() -relativedelta(months=6)
+# by default, tweets before this datetime will be removed.
+REMOVE_BEFORE = datetime.now() -relativedelta(months=1)
 
 app = Chalice(app_name='tweet-deleter')
 
@@ -31,12 +31,10 @@ def delete_tweets_before(myid, dt, next_token=None):
     count = 0
     if res.data is not None:
         for t in res.data:
-            
             print(t)
             count += 1
     return count
 
-# Automatically runs every day
 @app.schedule(Rate(15, unit=Rate.MINUTES))
 def delete_tweets(event):
     myid = get_my_user_id()
