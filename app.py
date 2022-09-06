@@ -29,10 +29,11 @@ def delete_tweets_before(myid, dt, next_token=None):
         end_time=dt,
         max_results=50)
     count = 0
-    for t in res.data:
-        client.delete_tweet(t['id'])
-        print(t)
-        count += 1
+    if res.data is not None:
+        for t in res.data:
+            
+            print(t)
+            count += 1
     return count
 
 # Automatically runs every day
