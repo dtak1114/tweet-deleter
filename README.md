@@ -20,9 +20,9 @@ sets up AWS event + lambda function to periodically clean up your tweets posted 
 pip install -r requirements-dev.txt
 ```
 
-2. replace credentials in `app.py`. 
+2. replace credentials in `app.py`, or declare them as environmental variables if you'd prefer.
 
-3. deploy.
+3. deploy with the command:
 
 ```sh
 chalice deploy
@@ -31,6 +31,7 @@ chalice deploy
 # Configuration & Limitation
 
 - Due to Twitter's [rate limit](https://developer.twitter.com/ja/docs/twitter-api/rate-limits), it removes upto `50 tweets/15min` == `200 tweets/1hour`. Just hold on tight..
-  - for batch deletion, consider downloading tweet archive & delete with v1.1 `DestroyStatus` API
+  - If you're desperately rushing to destroy your dark legacy, or being online stalked, consider downloading tweet archive & delete with v1.1 `DestroyStatus` API, which has not rate limitation.
+    - Downloading tweets usually takes up to several days as [noted](https://help.twitter.com/en/managing-your-account/how-to-download-your-twitter-archive).
 - By default, tweets posted before 6 month from the moment of execution will be the target of clean up.
  - you can tweak by editing `app.py#REMOVE_BEFORE` if you'd like.
